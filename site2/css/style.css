@@ -1,0 +1,250 @@
+/* ==========================================================
+   Harrison Nyembo – site vitrine
+   Charte : celle de la carte de visite NAMAF Consulting
+   (vert foncé, vert clair, blanc, motif de points)
+   ========================================================== */
+
+/* ---------- Variables ---------- */
+:root {
+  --green-dark: #0b4f3f;
+  --green: #43a35a;
+  --green-soft: #eef6f0;
+  --white: #ffffff;
+  --text: #1b2a23;
+  --muted: #55675d;
+  --line: #dcebe1;
+
+  --radius: 14px;
+  --shadow: 0 6px 20px rgba(11, 79, 63, 0.08);
+  --font: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--white);
+  /* Motif de points discret, comme le planisphère de la carte */
+  background-image: radial-gradient(rgba(67, 163, 90, 0.18) 1.5px, transparent 1.6px);
+  background-size: 20px 20px;
+}
+
+/* Bandes vertes sur les côtés, comme la carte de visite */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: var(--green);
+  z-index: 20;
+}
+body::before { left: 0; }
+body::after  { right: 0; }
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3, p { margin-top: 0; }
+
+.container { width: min(1000px, 100% - 56px); margin-inline: auto; }
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+.nav__brand {
+  flex: 0 0 auto;
+}
+.nav__brand img {
+  width: auto;
+  height: 48px;
+  object-fit: contain;
+}
+.nav__links { display: flex; gap: 20px; }
+.nav__links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+}
+.nav__links a:hover { color: var(--green-dark); }
+
+/* ---------- Boutons et badge ---------- */
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 99px;
+  background: var(--green);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 2px solid var(--green-dark);
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary { background: var(--green-dark); color: var(--white); }
+.btn--outline { color: var(--green-dark); }
+.btn--outline:hover { background: var(--green-soft); }
+
+/* ---------- Accueil ---------- */
+.hero { padding: 64px 0; }
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.hero h1 {
+  margin: 16px 0 4px;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--green-dark);
+}
+.hero__role { font-size: 1.3rem; color: var(--muted); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.hero__photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 4px solid var(--green);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Sections ---------- */
+.section { padding: 64px 0; }
+.section--tinted { background: rgba(238, 246, 240, 0.92); }
+
+.title {
+  margin-bottom: 8px;
+  font-size: 1.9rem;
+  color: var(--green-dark);
+}
+.title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: var(--green);
+}
+.lead { color: var(--muted); }
+
+/* ---------- À propos ---------- */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.about__photo {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Cartes ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.grid--contact { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+.card {
+  padding: 22px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--green);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.card h3 { margin-bottom: 6px; font-size: 1.05rem; color: var(--green-dark); }
+.card p { margin: 0; font-size: 0.9rem; color: var(--muted); }
+.card a { text-decoration: none; }
+.card a:hover { color: var(--green-dark); text-decoration: underline; }
+
+/* ---------- Partenaires ---------- */
+.partners {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 16px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.partners--main { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+.partner {
+  padding: 18px;
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease;
+}
+.partner:hover { transform: translateY(-3px); }
+.partner img {
+  width: 100%;
+  height: 90px;
+  margin-bottom: 12px;
+  object-fit: contain;
+}
+.partners--main .partner { border: 2px solid var(--green); }
+.partners--main .partner img { height: 110px; }
+.partner span { font-size: 0.82rem; font-weight: 500; color: var(--green); }
+
+/* ---------- Pied de page ---------- */
+.footer {
+  padding: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--white);
+  background: var(--green-dark);
+}
+.footer p { margin: 0; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 760px) {
+  .hero__inner,
+  .about { grid-template-columns: 1fr; }
+  .nav__inner {
+    height: auto;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 0;
+  }
+  .nav__brand img { height: 42px; }
+  .nav__links { width: 100%; justify-content: space-between; }
+}
